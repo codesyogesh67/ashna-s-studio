@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell } from "@/components/SiteShell";
-import ashnaStudio from "@/assets/ashna-studio.jpg.asset.json";
+
 import { useState } from "react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/book")({
           "Private Pilates with Ashna in NYC or virtually worldwide. Single sessions and discounted packs.",
       },
       { property: "og:title", content: "Book a Private Session — Ashna Pilates" },
-      { property: "og:image", content: ashnaStudio.url },
+      { property: "og:image", content: "/ashna-studio.jpg" },
     ],
   }),
   component: BookPage,
@@ -85,7 +85,7 @@ function BookPage() {
           </div>
           <div className="md:col-span-6">
             <img
-              src={ashnaStudio.url}
+              src={"/ashna-studio.jpg"}
               alt="Ashna in the studio"
               className="w-full aspect-[4/5] object-cover max-w-[480px] ml-auto"
             />
