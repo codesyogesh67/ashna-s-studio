@@ -53,23 +53,25 @@ function Home() {
   return (
     <SiteShell>
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative grain overflow-hidden">
-
-        {/* YouTube Short background — mobile + desktop */}
+      <section
+        className="relative overflow-hidden"
+        style={{ backgroundColor: "#1C1009" }}
+      >
+        {/* ── VIDEO BACKGROUND — full bleed, both mobile and desktop ── */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            zIndex: -1,
-            backgroundColor: "#1C1009",
+            zIndex: 0,
             overflow: "hidden",
+            backgroundColor: "#1C1009",
           }}
         >
-          {/* YouTube Short — autoplay, muted, looping, no controls */}
           <iframe
             src="https://www.youtube.com/embed/6Hy-BbKIiIA?autoplay=1&mute=1&loop=1&playlist=6Hy-BbKIiIA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowFullScreen
+            title="Bollywood x House Pilates"
             style={{
               position: "absolute",
               top: "50%",
@@ -82,70 +84,97 @@ function Home() {
               border: "none",
               pointerEvents: "none",
             }}
-            title="Bollywood x House Pilates"
           />
-          {/* Dark overlay — makes ALL text readable on both mobile and desktop */}
+          {/* Dark gradient overlay — text always readable */}
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(180deg, rgba(28,16,9,0.72) 0%, rgba(28,16,9,0.55) 50%, rgba(28,16,9,0.75) 100%)",
+              background:
+                "linear-gradient(180deg, rgba(28,16,9,0.75) 0%, rgba(28,16,9,0.55) 40%, rgba(28,16,9,0.80) 100%)",
+              zIndex: 1,
             }}
           />
         </div>
 
-        <div className="max-w-[1320px] mx-auto px-5 md:px-10 pt-32 md:pt-36 pb-20 md:pb-28">
-          <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
-            <div className="md:col-span-10 fade-up">
-
-              {/* label */}
-              <div className="label mb-6" style={{ color: "rgba(232,196,154,0.9)" }}>
-                New York City · Pilates · Bollywood
-              </div>
-
-              {/* headline */}
-              <h1 className="display text-[44px] sm:text-[58px] md:text-[78px]" style={{ color: "#FFFFFF" }}>
-                Move with the music.
-                <br />
-                <em className="not-italic md:italic">Build with the community.</em>
-              </h1>
-
-              {/* subtext */}
-              <p className="mt-7 md:mt-8 text-[15px] md:text-base max-w-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
-                Monthly Bollywood × House Pilates events in NYC — where South Asian culture meets
-                serious strength training.
-              </p>
-
-              {/* CTAs */}
-              <div className="mt-8 md:mt-10 flex flex-wrap gap-3">
-                <Link to="/events" className="btn-primary">
-                  Book June 14 Event <ArrowUpRight size={16} />
-                </Link>
-                <Link
-                  to="/book"
-                  className="btn-outline"
-                  style={{ borderColor: "rgba(255,255,255,0.5)", color: "#FFFFFF" }}
-                >
-                  Work With Me
-                </Link>
-              </div>
-
-              {/* location */}
-              <div className="mt-8 flex items-center gap-2 text-[12px]" style={{ color: "rgba(255,255,255,0.6)" }}>
-                <span>📍 New York City</span>
-                <span style={{ opacity: 0.4 }}>·</span>
-                <a
-                  href="https://instagram.com/ashna.pilates"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-terracotta transition-colors"
-                >
-                  @ashna.pilates
-                </a>
-              </div>
-
+        {/* ── HERO CONTENT ── */}
+        <div
+          className="max-w-[1320px] mx-auto px-5 md:px-10 pt-32 md:pt-40 pb-24 md:pb-36"
+          style={{ position: "relative", zIndex: 2 }}
+        >
+          <div className="max-w-3xl">
+            {/* label */}
+            <div
+              className="label mb-6"
+              style={{ color: "rgba(232,196,154,0.85)", letterSpacing: "0.18em" }}
+            >
+              New York City · Pilates · Bollywood
             </div>
 
+            {/* headline — pure white, always */}
+            <h1
+              className="display"
+              style={{
+                fontSize: "clamp(42px, 7vw, 82px)",
+                lineHeight: 1.05,
+                color: "#FFFFFF",
+                fontStyle: "italic",
+              }}
+            >
+              Move with the music.
+              <br />
+              Build with the community.
+            </h1>
+
+            {/* subtext */}
+            <p
+              className="mt-7 md:mt-8 max-w-xl leading-relaxed text-[15px] md:text-base"
+              style={{ color: "rgba(255,255,255,0.82)" }}
+            >
+              Monthly Bollywood × House Pilates events in NYC — where South
+              Asian culture meets serious strength training.
+            </p>
+
+            {/* CTAs */}
+            <div className="mt-8 md:mt-10 flex flex-wrap gap-3">
+              <Link to="/events" className="btn-primary">
+                Book June 14 Event <ArrowUpRight size={16} />
+              </Link>
+              <a
+                href="/book"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: "12px 24px",
+                  border: "1px solid rgba(255,255,255,0.45)",
+                  color: "#FFFFFF",
+                  fontSize: "14px",
+                  borderRadius: "9999px",
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                }}
+              >
+                Work With Me
+              </a>
+            </div>
+
+            {/* location line */}
+            <div
+              className="mt-8 flex items-center gap-2 text-[12px]"
+              style={{ color: "rgba(255,255,255,0.55)" }}
+            >
+              <span>📍 New York City</span>
+              <span style={{ opacity: 0.4 }}>·</span>
+              <a
+                href="https://instagram.com/ashna.pilates"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: "rgba(255,255,255,0.55)" }}
+              >
+                @ashna.pilates
+              </a>
+            </div>
           </div>
         </div>
       </section>
