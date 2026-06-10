@@ -132,23 +132,18 @@ function AboutPage() {
             <em>Here's what they learned.</em>
           </h2>
           <div className="mt-12 flex justify-center">
-            <blockquote
-              className="tiktok-embed"
-              cite="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
-              data-video-id="7623591543038889246"
-              style={{ maxWidth: "325px", minWidth: "325px" }}
+            <div
+              className="overflow-hidden rounded-lg border border-white/10"
+              style={{ width: "325px", height: "580px" }}
             >
-              <section>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
-                >
-                  Watch on TikTok →
-                </a>
-              </section>
-            </blockquote>
-            <script async src="https://www.tiktok.com/embed.js" />
+              <iframe
+                src="https://www.tiktok.com/embed/v2/7623591543038889246"
+                allowFullScreen
+                allow="encrypted-media"
+                style={{ width: "325px", height: "580px", border: "none" }}
+                title="Ashna Pilates Form Breakdown — 187K views"
+              />
+            </div>
           </div>
           <p className="text-white/70 mt-8 max-w-lg mx-auto text-sm">
             "ribs knit in, core is engaged, lower back is supported." — the form breakdown that
