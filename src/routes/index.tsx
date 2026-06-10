@@ -55,53 +55,63 @@ function Home() {
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative grain overflow-hidden">
 
-        {/* MOBILE background — #1C1009 base so text is ALWAYS readable even if image fails */}
+        {/* YouTube Short background — mobile + desktop */}
         <div
-          className="md:hidden absolute inset-0 -z-10"
-          style={{ backgroundColor: "#1C1009" }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: -1,
+            backgroundColor: "#1C1009",
+            overflow: "hidden",
+          }}
         >
-          <img
-            src={IMG.ashnaStudio}
-            alt=""
+          {/* YouTube Short — autoplay, muted, looping, no controls */}
+          <iframe
+            src="https://www.youtube.com/embed/6Hy-BbKIiIA?autoplay=1&mute=1&loop=1&playlist=6Hy-BbKIiIA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "177.78vh",
+              minWidth: "100%",
+              height: "56.25vw",
+              minHeight: "100%",
+              border: "none",
+              pointerEvents: "none",
+            }}
+            title="Bollywood x House Pilates"
+          />
+          {/* Dark overlay — makes ALL text readable on both mobile and desktop */}
+          <div
             style={{
               position: "absolute",
               inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "top center",
-              opacity: 0.4,
+              background: "linear-gradient(180deg, rgba(28,16,9,0.72) 0%, rgba(28,16,9,0.55) 50%, rgba(28,16,9,0.75) 100%)",
             }}
           />
         </div>
 
-        {/* DESKTOP radial wash */}
-        <div
-          className="hidden md:block absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(60% 50% at 25% 40%, rgba(232,196,154,0.35) 0%, transparent 60%), #FAF5F0",
-          }}
-        />
-
         <div className="max-w-[1320px] mx-auto px-5 md:px-10 pt-32 md:pt-36 pb-20 md:pb-28">
           <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
-            <div className="md:col-span-7 fade-up">
+            <div className="md:col-span-10 fade-up">
 
               {/* label */}
-              <div className="label mb-6 md:!text-terracotta" style={{ color: "rgba(232,196,154,0.9)" }}>
+              <div className="label mb-6" style={{ color: "rgba(232,196,154,0.9)" }}>
                 New York City · Pilates · Bollywood
               </div>
 
-              {/* headline — white on mobile, ink on desktop */}
-              <h1 className="display text-[44px] sm:text-[58px] md:text-[78px] md:text-ink" style={{ color: "#FFFFFF" }}>
+              {/* headline */}
+              <h1 className="display text-[44px] sm:text-[58px] md:text-[78px]" style={{ color: "#FFFFFF" }}>
                 Move with the music.
                 <br />
                 <em className="not-italic md:italic">Build with the community.</em>
               </h1>
 
-              {/* subtext — white on mobile, ink-soft on desktop */}
-              <p className="mt-7 md:mt-8 text-[15px] md:text-base md:text-ink-soft max-w-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
+              {/* subtext */}
+              <p className="mt-7 md:mt-8 text-[15px] md:text-base max-w-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
                 Monthly Bollywood × House Pilates events in NYC — where South Asian culture meets
                 serious strength training.
               </p>
@@ -113,14 +123,15 @@ function Home() {
                 </Link>
                 <Link
                   to="/book"
-                  className="btn-outline md:btn-outline btn-ghost-light md:!border-terracotta md:!text-terracotta"
+                  className="btn-outline"
+                  style={{ borderColor: "rgba(255,255,255,0.5)", color: "#FFFFFF" }}
                 >
                   Work With Me
                 </Link>
               </div>
 
               {/* location */}
-              <div className="mt-8 flex items-center gap-2 text-[12px] md:text-ink-soft" style={{ color: "rgba(255,255,255,0.6)" }}>
+              <div className="mt-8 flex items-center gap-2 text-[12px]" style={{ color: "rgba(255,255,255,0.6)" }}>
                 <span>📍 New York City</span>
                 <span style={{ opacity: 0.4 }}>·</span>
                 <a
@@ -133,22 +144,6 @@ function Home() {
                 </a>
               </div>
 
-            </div>
-
-            {/* DESKTOP hero photo */}
-            <div className="hidden md:block md:col-span-5">
-              <div className="relative">
-                <div
-                  className="absolute -inset-4 -z-10 rounded-tl-[120px] rounded-tr-[120px]"
-                  style={{ background: "linear-gradient(180deg, #E8C49A 0%, transparent 70%)" }}
-                />
-                <img
-                  src={IMG.ashnaStudio}
-                  alt="Ashna Chandra in the studio"
-                  className="w-full aspect-[4/5] object-cover object-top rounded-tl-[120px] rounded-tr-[120px]"
-                  style={{ filter: "saturate(1.05) contrast(1.02)" }}
-                />
-              </div>
             </div>
 
           </div>
