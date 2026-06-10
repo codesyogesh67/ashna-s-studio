@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell } from "@/components/SiteShell";
-import classLoop1 from "@/assets/class-loop-1.mp4.asset.json";
-import ashnaCertified from "@/assets/ashna-certified.jpg.asset.json";
-import galleryClass1 from "@/assets/gallery-class-1.jpg.asset.json";
+
+
+
 import galleryClass2 from "@/assets/gallery-class-2.jpg.asset.json";
 import { ArrowUpRight } from "lucide-react";
 
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/events")({
           "Monthly Bollywood × House Pilates popups in New York City. Reserve your spot — they sell out every time.",
       },
       { property: "og:title", content: "Events — Bollywood × House Pilates" },
-      { property: "og:image", content: galleryClass1.url },
+      { property: "og:image", content: "/gallery-class-1.jpg" },
     ],
   }),
   component: EventsPage,
@@ -27,7 +27,7 @@ const PAST = [
     title: "The Chai Experience",
     date: "May 30, 2025",
     partners: "@kadak_co · @noorsquares · @dj_axar",
-    img: ashnaCertified.url,
+    img: "/ashna-certified.jpg",
   },
   {
     title: "April Popup",
@@ -39,7 +39,7 @@ const PAST = [
     title: "March Popup",
     date: "March 25, 2025",
     partners: "@rozstore.co · @joinfitin",
-    img: galleryClass1.url,
+    img: "/gallery-class-1.jpg",
   },
 ];
 
@@ -50,7 +50,7 @@ function EventsPage() {
       <section className="relative h-[60vh] min-h-[460px] overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          src={classLoop1.url}
+          src={"/gallery-class-1.jpg"}
           autoPlay
           muted
           loop
@@ -74,7 +74,7 @@ function EventsPage() {
 
           <div className="grid md:grid-cols-12 gap-8 md:gap-10 bg-card border border-gold p-6 md:p-10">
             <div className="md:col-span-5 aspect-[4/5] overflow-hidden bg-dark/10">
-              <img src={galleryClass1.url} alt="" className="w-full h-full object-cover" />
+              <img src={"/gallery-class-1.jpg"} alt="" className="w-full h-full object-cover" />
             </div>
             <div className="md:col-span-7 flex flex-col">
               <div className="label">Sunday · June 14, 2025</div>
