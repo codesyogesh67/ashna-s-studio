@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell } from "@/components/SiteShell";
-import ashnaCertified from "@/assets/ashna-certified.jpg.asset.json";
-import classLoop1 from "@/assets/class-loop-1.mp4.asset.json";
 import { ArrowUpRight } from "lucide-react";
+
+const IMG = {
+  ashnaCertified: "/ashna-certified.jpg",
+  ashnaStudio:    "/ashna-studio.jpg",
+};
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,42 +17,33 @@ export const Route = createFileRoute("/about")({
           "South Asian, NYC-based Pilates instructor. Strength over aesthetics. Culture is not a costume. Community is the workout.",
       },
       { property: "og:title", content: "About Ashna Chandra" },
-      { property: "og:image", content: ashnaCertified.url },
+      { property: "og:image", content: IMG.ashnaCertified },
     ],
   }),
   component: AboutPage,
 });
 
 const PARTNERS = [
-  "@kadak_co",
-  "@noorsquares",
-  "@adanola",
-  "@joinfitin",
-  "@theproteinshopnyc",
-  "@rozstore.co",
-  "@dj_axar",
-  "FORM app",
+  "@kadak_co", "@noorsquares", "@adanola", "@joinfitin",
+  "@theproteinshopnyc", "@rozstore.co", "@dj_axar", "FORM app",
 ];
 
 function AboutPage() {
   return (
     <SiteShell>
-      {/* EDITORIAL HEADER */}
+      {/* EDITORIAL HEADER — real photo with overlay */}
       <section className="relative h-[60vh] min-h-[420px] overflow-hidden grain">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src={classLoop1.url}
-          autoPlay
-          muted
-          loop
-          playsInline
+        <img
+          src={IMG.ashnaStudio}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-terracotta/35 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-dark/40" />
+        <div className="absolute inset-0 bg-dark/55" />
         <div className="relative h-full max-w-[1320px] mx-auto px-5 md:px-10 flex items-end pb-16 md:pb-24">
-          <div className="text-bg">
+          <div className="text-white">
             <div className="label !text-gold">About</div>
-            <h1 className="display text-6xl md:text-[96px] mt-4">
+            <h1 className="display text-6xl md:text-[96px] mt-4 text-white">
               Hi, I'm <em>Ashna.</em>
             </h1>
           </div>
@@ -63,9 +57,9 @@ function AboutPage() {
             <div className="relative inline-block">
               <div className="absolute -inset-3 border border-gold rotate-1" aria-hidden />
               <img
-                src={ashnaCertified.url}
-                alt="Ashna Chandra"
-                className="relative w-full max-w-[480px] aspect-[4/5] object-cover"
+                src={IMG.ashnaCertified}
+                alt="Ashna Chandra, certified mat Pilates instructor"
+                className="relative w-full max-w-[480px] aspect-[4/5] object-cover object-top"
               />
             </div>
           </div>
@@ -119,10 +113,7 @@ function AboutPage() {
           {[0, 1].map((i) => (
             <div key={i} className="flex items-center shrink-0">
               {PARTNERS.map((p, j) => (
-                <span
-                  key={`${i}-${j}`}
-                  className="display italic text-3xl md:text-4xl text-ink-soft px-10"
-                >
+                <span key={`${i}-${j}`} className="display italic text-3xl md:text-4xl text-ink-soft px-10">
                   {p}
                 </span>
               ))}
@@ -131,27 +122,35 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* VIRAL VIDEO */}
-      <section className="py-20 md:py-28 bg-dark text-bg">
+      {/* VIRAL VIDEO — real TikTok embed */}
+      <section className="py-20 md:py-28 bg-dark text-white">
         <div className="max-w-[1100px] mx-auto px-5 md:px-10 text-center">
           <div className="label !text-gold">Why people trust my teaching</div>
-          <h2 className="display text-4xl md:text-6xl mt-4">
+          <h2 className="display text-4xl md:text-6xl mt-4 text-white">
             187,000 people watched this.
             <br />
             <em>Here's what they learned.</em>
           </h2>
-          <div className="mt-12 aspect-[9/16] max-w-[380px] mx-auto overflow-hidden border border-bg/15">
-            {/* TODO: replace with official TikTok oEmbed iframe for the 187K video */}
-            <video
-              src={classLoop1.url}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            />
+          <div className="mt-12 flex justify-center">
+            <blockquote
+              className="tiktok-embed"
+              cite="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
+              data-video-id="7623591543038889246"
+              style={{ maxWidth: "325px", minWidth: "325px" }}
+            >
+              <section>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
+                >
+                  Watch on TikTok →
+                </a>
+              </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js" />
           </div>
-          <p className="text-bg/70 mt-8 max-w-lg mx-auto text-sm">
+          <p className="text-white/70 mt-8 max-w-lg mx-auto text-sm">
             "ribs knit in, core is engaged, lower back is supported." — the form breakdown that
             taught 187K people to actually feel Pilates work.
           </p>
