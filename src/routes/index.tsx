@@ -54,17 +54,28 @@ function Home() {
     <SiteShell>
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative grain overflow-hidden">
-        {/* mobile background — solid dark terracotta overlay over hero image */}
-        <div className="md:hidden absolute inset-0 -z-10">
+
+        {/* MOBILE background — #1C1009 base so text is ALWAYS readable even if image fails */}
+        <div
+          className="md:hidden absolute inset-0 -z-10"
+          style={{ backgroundColor: "#1C1009" }}
+        >
           <img
             src={IMG.ashnaStudio}
             alt=""
-            className="w-full h-full object-cover object-top"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "top center",
+              opacity: 0.4,
+            }}
           />
-          <div className="absolute inset-0 bg-terracotta/40 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-dark/60" />
         </div>
-        {/* radial wash desktop */}
+
+        {/* DESKTOP radial wash */}
         <div
           className="hidden md:block absolute inset-0 -z-10"
           style={{
@@ -72,21 +83,30 @@ function Home() {
               "radial-gradient(60% 50% at 25% 40%, rgba(232,196,154,0.35) 0%, transparent 60%), #FAF5F0",
           }}
         />
+
         <div className="max-w-[1320px] mx-auto px-5 md:px-10 pt-32 md:pt-36 pb-20 md:pb-28">
           <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
             <div className="md:col-span-7 fade-up">
-              <div className="label !text-terracotta md:!text-terracotta text-bg/95 mb-6">
+
+              {/* label */}
+              <div className="label mb-6 md:!text-terracotta" style={{ color: "rgba(232,196,154,0.9)" }}>
                 New York City · Pilates · Bollywood
               </div>
-              <h1 className="display text-[44px] sm:text-[58px] md:text-[78px] text-bg md:text-ink">
+
+              {/* headline — white on mobile, ink on desktop */}
+              <h1 className="display text-[44px] sm:text-[58px] md:text-[78px] md:text-ink" style={{ color: "#FFFFFF" }}>
                 Move with the music.
                 <br />
                 <em className="not-italic md:italic">Build with the community.</em>
               </h1>
-              <p className="mt-7 md:mt-8 text-[15px] md:text-base text-bg/90 md:text-ink-soft max-w-xl leading-relaxed">
+
+              {/* subtext — white on mobile, ink-soft on desktop */}
+              <p className="mt-7 md:mt-8 text-[15px] md:text-base md:text-ink-soft max-w-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
                 Monthly Bollywood × House Pilates events in NYC — where South Asian culture meets
                 serious strength training.
               </p>
+
+              {/* CTAs */}
               <div className="mt-8 md:mt-10 flex flex-wrap gap-3">
                 <Link to="/events" className="btn-primary">
                   Book June 14 Event <ArrowUpRight size={16} />
@@ -98,9 +118,11 @@ function Home() {
                   Work With Me
                 </Link>
               </div>
-              <div className="mt-8 flex items-center gap-2 text-[12px] text-bg/70 md:text-ink-soft">
+
+              {/* location */}
+              <div className="mt-8 flex items-center gap-2 text-[12px] md:text-ink-soft" style={{ color: "rgba(255,255,255,0.6)" }}>
                 <span>📍 New York City</span>
-                <span className="opacity-50">·</span>
+                <span style={{ opacity: 0.4 }}>·</span>
                 <a
                   href="https://instagram.com/ashna.pilates"
                   target="_blank"
@@ -110,8 +132,10 @@ function Home() {
                   @ashna.pilates
                 </a>
               </div>
+
             </div>
-            {/* desktop hero photo */}
+
+            {/* DESKTOP hero photo */}
             <div className="hidden md:block md:col-span-5">
               <div className="relative">
                 <div
@@ -126,6 +150,7 @@ function Home() {
                 />
               </div>
             </div>
+
           </div>
         </div>
       </section>
