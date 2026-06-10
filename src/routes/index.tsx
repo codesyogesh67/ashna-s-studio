@@ -189,30 +189,31 @@ function Home() {
       <hr className="hairline max-w-[1320px] mx-auto" />
 
       {/* ── NEXT EVENT ───────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
-        {/* Dark background with gold accent image overlay */}
-        <div className="absolute inset-0 -z-10">
-          <img
-            src={IMG.galleryClass1}
-            alt=""
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Stronger overlay so ALL text is readable */}
-          <div className="absolute inset-0 bg-dark/80" />
-        </div>
-        <div className="max-w-[1100px] mx-auto px-5 md:px-10 py-24 md:py-36 text-white">
+      <section className="relative overflow-hidden" style={{ backgroundColor: "#1C1009" }}>
+        {/* Subtle terracotta radial glow — purely decorative, no contrast risk */}
+        <div
+          className="absolute inset-0 -z-10 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,106,58,0.18) 0%, transparent 70%)",
+          }}
+        />
+        <div className="max-w-[1100px] mx-auto px-5 md:px-10 py-24 md:py-36">
           <div className="text-center fade-up">
             <div className="label !text-gold">Next event</div>
-            <h2 className="display italic text-5xl md:text-7xl mt-5 text-white">
+            <h2
+              className="display italic text-5xl md:text-7xl mt-5"
+              style={{ color: "#FFFFFF" }}
+            >
               Bollywood × House Pilates
             </h2>
             <p className="display italic text-2xl md:text-3xl text-gold mt-3">
               A Summer Ritual in Gold
             </p>
-            <p className="mt-6 text-sm md:text-base text-white/90 tracking-wide">
+            <p className="mt-6 text-sm md:text-base tracking-wide" style={{ color: "#F0E8E0" }}>
               Sunday, June 14 · New York City
             </p>
-            <p className="mt-3 text-xs md:text-sm text-white/70 max-w-xl mx-auto">
+            <p className="mt-3 text-xs md:text-sm max-w-xl mx-auto" style={{ color: "#C4B5A8" }}>
               With jewelry from{" "}
               <span className="text-gold">@rozstore.co</span> · Cold-press juices from{" "}
               <span className="text-gold">@theproteinshopnyc</span>
@@ -243,22 +244,28 @@ function Home() {
             ].map((t) => (
               <div
                 key={t.tier}
-                className={`p-7 md:p-9 backdrop-blur-sm border ${
-                  t.gold
-                    ? "bg-gold/10 border-gold/60"
-                    : "bg-white/[0.06] border-white/20"
-                }`}
+                style={{
+                  background: t.gold ? "rgba(232,196,154,0.08)" : "rgba(255,255,255,0.04)",
+                  border: t.gold ? "1px solid rgba(232,196,154,0.5)" : "1px solid rgba(255,255,255,0.15)",
+                }}
+                className="p-7 md:p-9"
               >
                 <div className="flex items-baseline justify-between">
                   <div className="label !text-gold">{t.tier}</div>
-                  <div className="display italic text-4xl text-white">{t.price}</div>
+                  <div className="display italic text-4xl" style={{ color: "#FFFFFF" }}>
+                    {t.price}
+                  </div>
                 </div>
-                <p className="mt-5 text-sm text-white/85 leading-relaxed min-h-[3.5rem]">
+                <p
+                  className="mt-5 text-sm leading-relaxed min-h-[3.5rem]"
+                  style={{ color: "#E0D4CC" }}
+                >
                   {t.desc}
                 </p>
                 <a
                   href="#"
-                  className="mt-7 inline-flex items-center gap-2 text-sm text-white border-b border-white/40 pb-1 hover:text-gold hover:border-gold transition-colors"
+                  className="mt-7 inline-flex items-center gap-2 text-sm pb-1 hover:text-gold hover:border-gold transition-colors"
+                  style={{ color: "#FFFFFF", borderBottom: "1px solid rgba(255,255,255,0.35)" }}
                 >
                   {t.cta} <ArrowUpRight size={14} />
                 </a>
@@ -383,29 +390,26 @@ function Home() {
         </div>
       </section>
 
-      {/* ── VIRAL MOMENT — TikTok embed ──────────────────────────── */}
+      {/* ── VIRAL MOMENT — TikTok iframe embed ───────────────────── */}
       <section className="bg-dark text-white py-20 md:py-28">
         <div className="max-w-[1320px] mx-auto px-5 md:px-10 grid md:grid-cols-12 gap-12 md:gap-16 items-center">
-          {/* TikTok oEmbed */}
+          {/* TikTok iframe — works reliably without external JS */}
           <div className="md:col-span-5 flex justify-center">
-            <div className="w-full max-w-[325px]">
-              <blockquote
-                className="tiktok-embed"
-                cite="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
-                data-video-id="7623591543038889246"
-                style={{ maxWidth: "325px", minWidth: "325px" }}
-              >
-                <section>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
-                  >
-                    Watch on TikTok
-                  </a>
-                </section>
-              </blockquote>
-              <script async src="https://www.tiktok.com/embed.js" />
+            <div
+              className="overflow-hidden rounded-lg border border-white/10"
+              style={{ width: "325px", height: "580px" }}
+            >
+              <iframe
+                src="https://www.tiktok.com/embed/v2/7623591543038889246"
+                allowFullScreen
+                allow="encrypted-media"
+                style={{
+                  width: "325px",
+                  height: "580px",
+                  border: "none",
+                }}
+                title="Ashna Pilates Form Breakdown — 187K views"
+              />
             </div>
           </div>
           <div className="md:col-span-7">
