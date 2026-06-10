@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ashna-s-studio",
+  "compatibility_date": "2026-06-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "dist/server/server.js",
+  "assets": {
+    "directory": "dist/client",
+    "binding": "ASSETS"
+  }
+}
