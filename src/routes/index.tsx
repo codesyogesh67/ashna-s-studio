@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, TikTokIcon } from "@/components/SiteShell";
-import ashnaStudio from "@/assets/ashna-studio.jpg.asset.json";
-import ashnaCertified from "@/assets/ashna-certified.jpg.asset.json";
-import galleryClass1 from "@/assets/gallery-class-1.jpg.asset.json";
-import galleryClass2 from "@/assets/gallery-class-2.jpg.asset.json";
-import galleryForm from "@/assets/gallery-form.jpg.asset.json";
-import classLoop1 from "@/assets/class-loop-1.mp4.asset.json";
 import { ArrowUpRight, Instagram, Sparkle } from "lucide-react";
+
+// ── Real public image paths (served from /public) ──────────────────
+const IMG = {
+  ashnaStudio:    "/ashna-studio.jpg",
+  ashnaCertified: "/ashna-certified.jpg",
+  galleryClass1:  "/gallery-class-1.jpg",
+  galleryClass2:  "/gallery-class-2.jpg",
+  galleryForm:    "/gallery-form.jpg",
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,7 +25,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Where South Asian culture meets serious strength training.",
       },
-      { property: "og:image", content: ashnaStudio.url },
+      { property: "og:image", content: IMG.ashnaStudio },
     ],
   }),
   component: Home,
@@ -39,23 +42,27 @@ const PARTNERS = [
   "FORM app",
 ];
 
+const GALLERY = [
+  { src: IMG.galleryClass1,  caption: "Bollywood × House Pilates · Monthly NYC" },
+  { src: IMG.ashnaCertified, caption: "Newly certified · Mat Pilates instructor" },
+  { src: IMG.galleryForm,    caption: "Form first. Always." },
+  { src: IMG.galleryClass2,  caption: "Deep core, every class." },
+] as const;
+
 function Home() {
   return (
     <SiteShell>
-      {/* HERO */}
+      {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative grain overflow-hidden">
-        {/* mobile background */}
+        {/* mobile background — solid dark terracotta overlay over hero image */}
         <div className="md:hidden absolute inset-0 -z-10">
-          <video
-            className="w-full h-full object-cover"
-            src={classLoop1.url}
-            autoPlay
-            muted
-            loop
-            playsInline
+          <img
+            src={IMG.ashnaStudio}
+            alt=""
+            className="w-full h-full object-cover object-top"
           />
           <div className="absolute inset-0 bg-terracotta/40 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-dark/55" />
+          <div className="absolute inset-0 bg-dark/60" />
         </div>
         {/* radial wash desktop */}
         <div
@@ -84,7 +91,10 @@ function Home() {
                 <Link to="/events" className="btn-primary">
                   Book June 14 Event <ArrowUpRight size={16} />
                 </Link>
-                <Link to="/book" className="btn-outline md:btn-outline btn-ghost-light md:!border-terracotta md:!text-terracotta">
+                <Link
+                  to="/book"
+                  className="btn-outline md:btn-outline btn-ghost-light md:!border-terracotta md:!text-terracotta"
+                >
                   Work With Me
                 </Link>
               </div>
@@ -109,9 +119,9 @@ function Home() {
                   style={{ background: "linear-gradient(180deg, #E8C49A 0%, transparent 70%)" }}
                 />
                 <img
-                  src={ashnaStudio.url}
+                  src={IMG.ashnaStudio}
                   alt="Ashna Chandra in the studio"
-                  className="w-full aspect-[4/5] object-cover rounded-tl-[120px] rounded-tr-[120px]"
+                  className="w-full aspect-[4/5] object-cover object-top rounded-tl-[120px] rounded-tr-[120px]"
                   style={{ filter: "saturate(1.05) contrast(1.02)" }}
                 />
               </div>
@@ -120,7 +130,7 @@ function Home() {
         </div>
       </section>
 
-      {/* TICKER */}
+      {/* ── TICKER ───────────────────────────────────────────────── */}
       <section className="bg-dark text-gold py-4 overflow-hidden border-y border-gold/20">
         <div className="flex whitespace-nowrap marquee">
           {[0, 1].map((i) => (
@@ -142,16 +152,16 @@ function Home() {
         </div>
       </section>
 
-      {/* WHO IS ASHNA */}
+      {/* ── WHO IS ASHNA ─────────────────────────────────────────── */}
       <section className="py-20 md:py-28">
         <div className="max-w-[1320px] mx-auto px-5 md:px-10 grid md:grid-cols-12 gap-10 md:gap-16 items-center">
           <div className="md:col-span-5">
             <div className="relative inline-block">
               <div className="absolute -inset-3 border border-gold -rotate-1" aria-hidden />
               <img
-                src={ashnaCertified.url}
+                src={IMG.ashnaCertified}
                 alt="Ashna Chandra, certified mat Pilates instructor"
-                className="relative w-full max-w-[480px] aspect-[4/5] object-cover"
+                className="relative w-full max-w-[480px] aspect-[4/5] object-cover object-top"
               />
             </div>
           </div>
@@ -178,32 +188,31 @@ function Home() {
 
       <hr className="hairline max-w-[1320px] mx-auto" />
 
-      {/* NEXT EVENT */}
+      {/* ── NEXT EVENT ───────────────────────────────────────────── */}
       <section className="relative overflow-hidden">
+        {/* Dark background with gold accent image overlay */}
         <div className="absolute inset-0 -z-10">
-          <video
-            className="w-full h-full object-cover"
-            src={classLoop1.url}
-            autoPlay
-            muted
-            loop
-            playsInline
+          <img
+            src={IMG.galleryClass1}
+            alt=""
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-dark/[0.62]" />
+          {/* Stronger overlay so ALL text is readable */}
+          <div className="absolute inset-0 bg-dark/80" />
         </div>
-        <div className="max-w-[1100px] mx-auto px-5 md:px-10 py-24 md:py-36 text-bg">
+        <div className="max-w-[1100px] mx-auto px-5 md:px-10 py-24 md:py-36 text-white">
           <div className="text-center fade-up">
             <div className="label !text-gold">Next event</div>
-            <h2 className="display italic text-5xl md:text-7xl mt-5 text-bg">
+            <h2 className="display italic text-5xl md:text-7xl mt-5 text-white">
               Bollywood × House Pilates
             </h2>
             <p className="display italic text-2xl md:text-3xl text-gold mt-3">
               A Summer Ritual in Gold
             </p>
-            <p className="mt-6 text-sm md:text-base text-bg/80 tracking-wide">
+            <p className="mt-6 text-sm md:text-base text-white/90 tracking-wide">
               Sunday, June 14 · New York City
             </p>
-            <p className="mt-3 text-xs md:text-sm text-bg/60 max-w-xl mx-auto">
+            <p className="mt-3 text-xs md:text-sm text-white/70 max-w-xl mx-auto">
               With jewelry from{" "}
               <span className="text-gold">@rozstore.co</span> · Cold-press juices from{" "}
               <span className="text-gold">@theproteinshopnyc</span>
@@ -222,6 +231,7 @@ function Home() {
                 price: "$35",
                 desc: "Your spot in the room. Live DJ. Real community.",
                 cta: "Reserve General Spot",
+                gold: false,
               },
               {
                 tier: "VIP",
@@ -234,18 +244,21 @@ function Home() {
               <div
                 key={t.tier}
                 className={`p-7 md:p-9 backdrop-blur-sm border ${
-                  t.gold ? "bg-gold/10 border-gold/60" : "bg-bg/[0.06] border-bg/20"
+                  t.gold
+                    ? "bg-gold/10 border-gold/60"
+                    : "bg-white/[0.06] border-white/20"
                 }`}
               >
                 <div className="flex items-baseline justify-between">
                   <div className="label !text-gold">{t.tier}</div>
-                  <div className="display italic text-4xl text-bg">{t.price}</div>
+                  <div className="display italic text-4xl text-white">{t.price}</div>
                 </div>
-                <p className="mt-5 text-sm text-bg/85 leading-relaxed min-h-[3.5rem]">{t.desc}</p>
+                <p className="mt-5 text-sm text-white/85 leading-relaxed min-h-[3.5rem]">
+                  {t.desc}
+                </p>
                 <a
                   href="#"
-                  /* TODO: replace with Stripe payment link */
-                  className="mt-7 inline-flex items-center gap-2 text-sm border-b border-bg/40 pb-1 hover:text-gold hover:border-gold transition-colors"
+                  className="mt-7 inline-flex items-center gap-2 text-sm text-white border-b border-white/40 pb-1 hover:text-gold hover:border-gold transition-colors"
                 >
                   {t.cta} <ArrowUpRight size={14} />
                 </a>
@@ -258,7 +271,7 @@ function Home() {
         </div>
       </section>
 
-      {/* THE EXPERIENCE GALLERY */}
+      {/* ── THE EXPERIENCE GALLERY ───────────────────────────────── */}
       <section className="py-20 md:py-28">
         <div className="max-w-[1320px] mx-auto px-5 md:px-10">
           <div className="flex items-end justify-between gap-6 mb-12 md:mb-16">
@@ -287,10 +300,7 @@ function Home() {
           {/* desktop masonry */}
           <div className="hidden md:grid grid-cols-4 gap-5">
             {GALLERY.map((g, i) => (
-              <div
-                key={g.caption}
-                className={i === 0 ? "row-span-2" : i === 3 ? "row-span-2" : ""}
-              >
+              <div key={g.caption} className={i === 0 ? "row-span-2" : i === 3 ? "row-span-2" : ""}>
                 <GalleryCard item={g} tall={i === 0 || i === 3} />
               </div>
             ))}
@@ -307,7 +317,7 @@ function Home() {
         </div>
       </section>
 
-      {/* WORK WITH ASHNA */}
+      {/* ── WORK WITH ASHNA ──────────────────────────────────────── */}
       <section className="bg-bg py-20 md:py-28 border-t border-gold/40">
         <div className="max-w-[1320px] mx-auto px-5 md:px-10">
           <div className="max-w-2xl mb-14">
@@ -320,7 +330,7 @@ function Home() {
             {[
               {
                 title: "Private Sessions",
-                img: galleryForm.url,
+                img: IMG.galleryForm,
                 body: "1-on-1 Pilates with Ashna. In-person or virtual. Tailored to your goals.",
                 price: "From $120 / session",
                 cta: "Book a Session",
@@ -328,7 +338,7 @@ function Home() {
               },
               {
                 title: "Bollywood × House Pilates",
-                img: galleryClass1.url,
+                img: IMG.galleryClass1,
                 body: "Monthly popup events in NYC. Live DJ. South Asian community. Real movement.",
                 price: "From $35 / ticket",
                 cta: "See Upcoming Events",
@@ -336,7 +346,7 @@ function Home() {
               },
               {
                 title: "Partner With Me",
-                img: galleryClass2.url,
+                img: IMG.galleryClass2,
                 body: "Let's bring your brand into the Bollywood × House Pilates world.",
                 price: "For brands & studios",
                 cta: "Inquire",
@@ -352,7 +362,7 @@ function Home() {
                   <img
                     src={c.img}
                     alt=""
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
                   />
                 </div>
                 <div className="p-7">
@@ -373,30 +383,39 @@ function Home() {
         </div>
       </section>
 
-      {/* VIRAL MOMENT */}
-      <section className="bg-dark text-bg py-20 md:py-28">
+      {/* ── VIRAL MOMENT — TikTok embed ──────────────────────────── */}
+      <section className="bg-dark text-white py-20 md:py-28">
         <div className="max-w-[1320px] mx-auto px-5 md:px-10 grid md:grid-cols-12 gap-12 md:gap-16 items-center">
-          <div className="md:col-span-6">
-            <div className="aspect-[9/16] max-w-[380px] mx-auto bg-black/40 border border-bg/10 overflow-hidden">
-              <video
-                src={classLoop1.url}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              />
+          {/* TikTok oEmbed */}
+          <div className="md:col-span-5 flex justify-center">
+            <div className="w-full max-w-[325px]">
+              <blockquote
+                className="tiktok-embed"
+                cite="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
+                data-video-id="7623591543038889246"
+                style={{ maxWidth: "325px", minWidth: "325px" }}
+              >
+                <section>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.tiktok.com/@ashnachandraaaa/video/7623591543038889246"
+                  >
+                    Watch on TikTok
+                  </a>
+                </section>
+              </blockquote>
+              <script async src="https://www.tiktok.com/embed.js" />
             </div>
           </div>
-          <div className="md:col-span-6">
+          <div className="md:col-span-7">
             <div className="label !text-gold">187,300 views and counting</div>
-            <h2 className="display text-4xl md:text-6xl mt-4">
+            <h2 className="display text-4xl md:text-6xl mt-4 text-white">
               When the form is right, <em>everything changes.</em>
             </h2>
-            <p className="mt-7 text-bg/75 leading-relaxed max-w-lg">
+            <p className="mt-7 text-white/75 leading-relaxed max-w-lg">
               This video reached 187K people because it's true — most of us have been doing Pilates
-              with compromised form and never knew it. Come to a class and I'll teach you in
-              person.
+              with compromised form and never knew it. Come to a class and I'll teach you in person.
             </p>
             <Link to="/events" className="btn-primary mt-9">
               Come to the Next Event <ArrowUpRight size={16} />
@@ -405,7 +424,7 @@ function Home() {
         </div>
       </section>
 
-      {/* EMAIL CAPTURE */}
+      {/* ── EMAIL CAPTURE ────────────────────────────────────────── */}
       <section
         className="py-24 md:py-32 grain"
         style={{ background: "linear-gradient(90deg, #FAF5F0 0%, #F1D9BC 100%)" }}
@@ -419,7 +438,6 @@ function Home() {
             Event drops, Pilates tips, and South Asian wellness content — straight to your inbox.
             No spam. Ever.
           </p>
-          {/* TODO: wire Mailchimp action="..." method="post" */}
           <form
             className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
             onSubmit={(e) => e.preventDefault()}
@@ -440,7 +458,7 @@ function Home() {
         </div>
       </section>
 
-      {/* INSTAGRAM STRIP */}
+      {/* ── INSTAGRAM STRIP ──────────────────────────────────────── */}
       <section className="py-20 md:py-24 bg-bg">
         <div className="max-w-[1320px] mx-auto px-5 md:px-10">
           <div className="flex items-end justify-between gap-6 mb-8">
@@ -454,15 +472,14 @@ function Home() {
               <Instagram size={14} /> Instagram
             </a>
           </div>
-          {/* TODO: replace with Instagram Basic Display API / SnapWidget feed */}
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
             {[
-              ashnaStudio.url,
-              galleryClass1.url,
-              ashnaCertified.url,
-              galleryForm.url,
-              galleryClass2.url,
-              ashnaStudio.url,
+              IMG.ashnaStudio,
+              IMG.galleryClass1,
+              IMG.ashnaCertified,
+              IMG.galleryForm,
+              IMG.galleryClass2,
+              IMG.ashnaStudio,
             ].map((src, i) => (
               <a
                 key={i}
@@ -474,12 +491,12 @@ function Home() {
                 <img
                   src={src}
                   alt=""
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/30 transition-colors grid place-items-center">
                   <Instagram
                     size={20}
-                    className="text-bg opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity"
                   />
                 </div>
               </a>
@@ -487,7 +504,7 @@ function Home() {
           </div>
           <div className="mt-8 flex items-center gap-4">
             <a
-              href="https://tiktok.com/@ashna.pilates"
+              href="https://tiktok.com/@ashnachandraaaa"
               target="_blank"
               rel="noreferrer"
               className="text-sm text-ink-soft hover:text-terracotta transition-colors inline-flex items-center gap-2"
@@ -498,7 +515,7 @@ function Home() {
         </div>
       </section>
 
-      {/* PARTNERS */}
+      {/* ── PARTNERS ─────────────────────────────────────────────── */}
       <section className="border-t border-gold/40 py-10 overflow-hidden">
         <div className="flex whitespace-nowrap marquee">
           {[0, 1].map((i) => (
@@ -519,13 +536,6 @@ function Home() {
   );
 }
 
-const GALLERY = [
-  { src: galleryClass1.url, caption: "Bollywood × House Pilates · Monthly NYC" },
-  { src: ashnaCertified.url, caption: "Newly certified · Mat Pilates instructor" },
-  { src: galleryForm.url, caption: "Form first. Always." },
-  { src: galleryClass2.url, caption: "Deep core, every class." },
-] as const;
-
 function GalleryCard({
   item,
   mobile,
@@ -544,11 +554,11 @@ function GalleryCard({
       <img
         src={item.src}
         alt={item.caption}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-top"
         style={{ filter: "saturate(1.05) contrast(1.02)" }}
       />
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-dark/80 to-transparent p-5">
-        <figcaption className="label !text-bg !text-[10px]">{item.caption}</figcaption>
+        <figcaption className="label !text-white !text-[10px]">{item.caption}</figcaption>
       </div>
     </figure>
   );
